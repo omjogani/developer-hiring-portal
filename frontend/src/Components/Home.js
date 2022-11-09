@@ -66,7 +66,7 @@ const Home = () => {
                   <p class="leading-relaxed text-base">
                     Build more project and get some hands on experience of development to get hired!
                   </p>
-                  <a class="mt-3 text-indigo-500 inline-flex items-center">
+                  <a href="Specify Something here too" class="mt-3 text-indigo-500 inline-flex items-center">
                     Get Started
                     <svg
                       fill="none"
@@ -106,7 +106,7 @@ const Home = () => {
                   <p class="leading-relaxed text-base">
                     Build Your Profile Strong to that you will stand out by your Work and Skills!
                   </p>
-                  <a class="mt-3 text-indigo-500 inline-flex items-center">
+                  <a href="Put Something Here" class="mt-3 text-indigo-500 inline-flex items-center">
                     Get Started
                     <svg
                       fill="none"
