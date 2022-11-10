@@ -3,6 +3,7 @@ import { Login } from "./Components/Login";
 import {Register} from './Components/Register';
 import {Home} from './Components/Home';
 import { AddDeveloperDetails } from "./Components/AddDeveloper";
+import { AddProject} from "./Components/AddProject";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       {/* <Login></Login> */}
       {/* <Register></Register> */}
       {/* <Home></Home> */}
-      <AddDeveloperDetails></AddDeveloperDetails>
+      {/* <AddDeveloperDetails></AddDeveloperDetails> */}
+      <AddProject></AddProject>
     </div>
   );
 }

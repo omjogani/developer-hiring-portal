@@ -2,74 +2,125 @@ import { useState } from "react";
 import "./addDeveloper.css";
 import FormInput from "./FormInput";
 import TagInput from "./TagInput";
+import RegisterImage from "../assets/register.png";
+import FileBase64 from "react-file-base64";
 
 const AddProject = () => {
   const [values, setValues] = useState({
-    username: "",
-    email: "",
-    birthday: "",
-    password: "",
-    confirmPassword: "",
+    title: "",
+    description: "",
+    screenshot: "",
+    liveLink: "",
+    githubLink: "",
   });
 
   const inputs = [
     {
       id: 1,
-      name: "name",
+      name: "title",
       type: "text",
-      placeholder: "Name",
-      errorMessage: "Name is required...",
-      label: "Name",
-      pattern: "^[A-Za-z]{1,20}$",
+      placeholder: "Title",
+      errorMessage: "Title is required...",
+      label: "Title",
       required: true,
     },
     {
       id: 2,
-      name: "bio",
+      name: "description",
       type: "text",
-      placeholder: "Bio",
-      errorMessage: "Bio is required...",
-      label: "Bio",
+      placeholder: "Description",
+      errorMessage: "Description is required...",
+      label: "Description",
       required: true,
     },
     {
       id: 3,
-      name: "experience",
-      type: "number",
-      errorMessage: "Experience is required, Enter 0 if no experience.",
-      placeholder: "Experience / Years",
-      label: "Working Experience",
-      required: true,
+      name: "liveLink",
+      type: "text",
+      placeholder: "Live URL",
+      label: "Live Link",
+    },
+    {
+      id: 4,
+      name: "githubLink",
+      type: "text",
+      placeholder: "GitHub URL",
+      label: "GitHub Link",
     },
   ];
 
+  const updateTechStack = (techs) => {
+    setValues((previous) => ({ ...previous, techStack: techs }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // * Data Available Here
+    console.log(values);
+    // TODO : need to type value of the experience to int
   };
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  console.log(values);
-
   return (
     <div className="app">
-      <form onSubmit={handleSubmit} onkeydown="return event.key != 'Enter';">
-        <h1 class="text-3xl">Register</h1>
-        <br />
-        {inputs.map((input) => (
-          <FormInput
-            key={input.id}
-            {...input}
-            value={values[input.name]}
-            onChange={onChange}
-          />
-        ))}
-        <label>Technology</label>
-        <TagInput></TagInput>
-        <button>Submit</button>
-      </form>
+      <div className="flex flex-row">
+        <form onSubmit={handleSubmit}>
+          <h1 className="text-3xl">Add Project</h1>
+          <br />
+          {/* {inputs.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              value={values[input.name]}
+              onChange={onChange}
+            />
+          ))} */}
+          <div className="flex flex-row">
+            <FormInput
+              key={inputs[0].id}
+              {...inputs[0]}
+              value={values[inputs[0].name]}
+              onChange={onChange}
+            />
+            <div className="w-7"></div>
+            <FormInput
+              key={inputs[1].id}
+              {...inputs[1]}
+              value={values[inputs[1].name]}
+              onChange={onChange}
+            />
+          </div>
+
+          <div className="flex flex-row">
+            <FormInput
+              key={inputs[2].id}
+              {...inputs[2]}
+              value={values[inputs[2].name]}
+              onChange={onChange}
+            />
+            <div className="w-7"></div>
+            <FormInput
+              key={inputs[3].id}
+              {...inputs[3]}
+              value={values[inputs[3].name]}
+              onChange={onChange}
+            />
+          </div>
+
+          <div className="flex flex-row">
+            <FileBase64
+              multiple={false}
+              onDone={(base64) => setValues({ ...values, screenshot: base64 })}
+            />
+            <div className="w-7"></div>
+            <img src={values.screenshot.image} alt="" />
+          </div>
+          <button>Submit</button>
+        </form>
+      </div>
     </div>
   );
 };
