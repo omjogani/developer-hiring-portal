@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./addDeveloper.css";
 import FormInput from "./FormInput";
-import TagInput from "./TagInput";
-import RegisterImage from "../assets/register.png";
+import GitHubLogo from "../assets/github.png";
+import LiveLinkLogo from "../assets/livelink.png";
 import FileBase64 from "react-file-base64";
+import DummyImage from "../assets/background.jpeg";
 
 const AddProject = () => {
   const [values, setValues] = useState({
@@ -29,8 +30,9 @@ const AddProject = () => {
       name: "description",
       type: "text",
       placeholder: "Description",
-      errorMessage: "Description is required...",
+      errorMessage: "Description is required & max limit 250 Characters...",
       label: "Description",
+      pattern: "^(.{1,250})$",
       required: true,
     },
     {
@@ -49,10 +51,6 @@ const AddProject = () => {
     },
   ];
 
-  const updateTechStack = (techs) => {
-    setValues((previous) => ({ ...previous, techStack: techs }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // * Data Available Here
@@ -70,14 +68,6 @@ const AddProject = () => {
         <form onSubmit={handleSubmit}>
           <h1 className="text-3xl">Add Project</h1>
           <br />
-          {/* {inputs.map((input) => (
-            <FormInput
-              key={input.id}
-              {...input}
-              value={values[input.name]}
-              onChange={onChange}
-            />
-          ))} */}
           <div className="flex flex-row">
             <FormInput
               key={inputs[0].id}
@@ -96,16 +86,16 @@ const AddProject = () => {
 
           <div className="flex flex-row">
             <FormInput
-              key={inputs[2].id}
-              {...inputs[2]}
-              value={values[inputs[2].name]}
+              key={inputs[3].id}
+              {...inputs[3]}
+              value={values[inputs[3].name]}
               onChange={onChange}
             />
             <div className="w-7"></div>
             <FormInput
-              key={inputs[3].id}
-              {...inputs[3]}
-              value={values[inputs[3].name]}
+              key={inputs[2].id}
+              {...inputs[2]}
+              value={values[inputs[2].name]}
               onChange={onChange}
             />
           </div>
@@ -115,11 +105,58 @@ const AddProject = () => {
               multiple={false}
               onDone={(base64) => setValues({ ...values, screenshot: base64 })}
             />
-            <div className="w-7"></div>
-            <img src={values.screenshot.image} alt="" />
           </div>
           <button>Submit</button>
         </form>
+        <div className="mr-6"></div>
+        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+          {values.screenshot === "" ? (
+            <div class="relative text-center text-white">
+              <img
+                class="w-full object-cover"
+                src={DummyImage}
+                alt="project image"
+              />
+              <div class="absolute inset-y-1/3 text-5xl text-white" >CHOOSE PROJECT IMAGE</div>
+            </div>
+          ) : (
+            <img
+              class="w-full object-cover"
+              src={values.screenshot.base64}
+              alt="project image"
+            />
+          )}
+          <div class="px-6 py-5">
+            <div class="font-bold text-xl mb-2">
+              {values.title === "" ? "PROJECT TITLE" : values.title}
+            </div>
+            <p class="text-gray-700 text-base">
+              {values.description === ""
+                ? "Start Typing Project Description Here..."
+                : values.description}
+            </p>
+          </div>
+          <div class="px-6 pt-4 pb-2">
+            <span
+              class={`inline-block w-14 h-14 ${
+                values.githubLink === "" ? "bg-purple-200" : "bg-green-300"
+              } rounded-full px-2 py-2 text-sm font-semibold text-gray-700 mr-2 mb-2`}
+            >
+              <a href={values.githubLink}>
+                <img src={GitHubLogo} alt="github logo" />
+              </a>
+            </span>
+            <span
+              class={`inline-block w-14 h-14 ${
+                values.liveLink === "" ? "bg-purple-200" : "bg-green-300"
+              } rounded-full px-2 py-2 text-sm font-semibold text-gray-700 mr-2 mb-2`}
+            >
+              <a href={values.liveLink}>
+                <img src={LiveLinkLogo} alt="live link logo" />
+              </a>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
