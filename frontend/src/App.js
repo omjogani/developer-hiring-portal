@@ -7,6 +7,7 @@ import { AddProject } from "./Components/AddProject";
 import { DisplayProjects } from "./Components/DisplayProjects";
 import { ProfileScreen } from "./Components/ProfileScreen";
 import { DisplayDevelopers } from "./Components/DisplayDevelopers";
+import { DisplayDeveloperDetails } from "./Components/DisplayDeveloperDetails";
 
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
       {/* <DisplayProjects></DisplayProjects> */}
       {/* <Home></Home> */}
       {/* <ProfileScreen></ProfileScreen> */}
-      <DisplayDevelopers></DisplayDevelopers>
+      {/* <DisplayDevelopers></DisplayDevelopers> */}
+      <DisplayDeveloperDetails></DisplayDeveloperDetails>
     </div>
   );
 }
