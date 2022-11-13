@@ -8,6 +8,7 @@ import { DisplayProjects } from "./Components/DisplayProjects";
 import { ProfileScreen } from "./Components/ProfileScreen";
 import { DisplayDevelopers } from "./Components/DisplayDevelopers";
 import { DisplayDeveloperDetails } from "./Components/DisplayDeveloperDetails";
+import { AdminHome } from "./Components/AdminHome";
 
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
       {/* <Home></Home> */}
       {/* <ProfileScreen></ProfileScreen> */}
       {/* <DisplayDevelopers></DisplayDevelopers> */}
-      <DisplayDeveloperDetails></DisplayDeveloperDetails>
+      {/* <DisplayDeveloperDetails></DisplayDeveloperDetails> */}
+      <AdminHome></AdminHome>
     </div>
   );
 }

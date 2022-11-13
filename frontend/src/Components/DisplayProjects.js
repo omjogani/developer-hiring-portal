@@ -1,6 +1,6 @@
 import GitHubLogo from "../assets/github.png";
 import LiveLinkLogo from "../assets/livelink.png";
-import BackgroundImage from "../assets/background.jpeg";
+
 
 const DisplayProjects = () => {
   return (
