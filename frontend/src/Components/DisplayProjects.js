@@ -18,15 +18,15 @@ const DisplayProjects = () => {
                 <img
                   alt="team"
                   class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                  src={BackgroundImage}
+                  src="https://findcoder.fra1.digitaloceanspaces.com/e539371214d7d2344ae73e2452b64abc"
                 />
                 <div class="w-full">
                   <h2 class="title-font font-medium text-lg text-gray-900">
-                    Project Title
+                    Student Mentor
                   </h2>
                   <h3 class="text-gray-500 mb-3">Om Jogani</h3>
                   <p class="mb-4">
-                  Description Max 100 Character
+                  Student Mentor - The Ultimate Education Hub App. The Main Intention to develop this app is to provide resources by which students can learn and revise some hard topics.
                   </p>
                   <span class="inline-flex">
                     <a class="text-gray-500" href="#githubURL">
@@ -44,15 +44,15 @@ const DisplayProjects = () => {
                 <img
                   alt="team"
                   class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                  src={BackgroundImage}
+                  src="https://findcoder.fra1.digitaloceanspaces.com/3c07d6c2eda417c030d84d7bb81811e3"
                 />
                 <div class="w-full">
                   <h2 class="title-font font-medium text-lg text-gray-900">
-                    Project Title
+                    Student Mentor 2
                   </h2>
                   <h3 class="text-gray-500 mb-3">Om Jogani</h3>
                   <p class="mb-4">
-                  Description Max 100 Character
+                  Student Mentor - The Ultimate Education Hub App. The Main Intention to develop this app is to provide resources by which students can learn and revise some hard topics.
                   </p>
                   <span class="inline-flex">
                     <a class="text-gray-500">
@@ -70,15 +70,15 @@ const DisplayProjects = () => {
                 <img
                   alt="team"
                   class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                  src={BackgroundImage}
+                  src="https://findcoder.fra1.digitaloceanspaces.com/88468a2b101ef9be36c666ef07fa71ff"
                 />
                 <div class="w-full">
                   <h2 class="title-font font-medium text-lg text-gray-900">
-                    Project Title
+                    Student Mentor 3
                   </h2>
                   <h3 class="text-gray-500 mb-3">Om Jogani</h3>
                   <p class="mb-4">
-                  Description Max 100 Character
+                  Student Mentor - The Ultimate Education Hub App. The Main Intention to develop this app is to provide resources by which students can learn and revise some hard topics.
                   </p>
                   <span class="inline-flex">
                     <a class="text-gray-500">
