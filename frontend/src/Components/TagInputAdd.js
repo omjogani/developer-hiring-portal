@@ -1,15 +1,10 @@
 import "./tagInput.css";
 import { useEffect, useState } from "react";
 
-const TagInput = ({handleAddTechStack, retrievedTag}) => {
+const TagInputAdd = ({handleAddTechStack}) => {
   const [tags, setTags] = useState([]);
 
-  useEffect(()=> {
-    setTags((prev) =>  retrievedTag);
-  }, );
-
   function handleKeyDown(e) {
-    
     if (e.key !== "Enter") return;
     const value = e.target.value;
     if (!value.trim()) return;
@@ -49,4 +44,4 @@ const TagInput = ({handleAddTechStack, retrievedTag}) => {
   );
 };
 
-export default TagInput;
+export default TagInputAdd;

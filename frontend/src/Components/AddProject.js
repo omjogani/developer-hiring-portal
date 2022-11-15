@@ -1,12 +1,16 @@
 import { useState } from "react";
 import "./addDeveloper.css";
 import FormInput from "./FormInput";
+import FileBase64 from "react-file-base64";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import GitHubLogo from "../assets/github.png";
 import LiveLinkLogo from "../assets/livelink.png";
-import FileBase64 from "react-file-base64";
 import DummyImage from "../assets/background.jpeg";
 
+
 const AddProject = () => {
+  const navigate=useNavigate();
   const [values, setValues] = useState({
     title: "",
     description: "",
@@ -14,6 +18,7 @@ const AddProject = () => {
     liveLink: "",
     githubLink: "",
   });
+
 
   const inputs = [
     {
@@ -32,7 +37,6 @@ const AddProject = () => {
       placeholder: "Description",
       errorMessage: "Description is required & max limit 250 Characters...",
       label: "Description",
-      pattern: "^(.{1,250})$",
       required: true,
     },
     {
@@ -51,8 +55,40 @@ const AddProject = () => {
     },
   ];
 
+  const sendRequest=async()=>{
+    const res=await axios.post("http://localhost:5000/api/project/add",{
+      title:values.title,
+      description:values.description,
+      screenshot:values.screenshot,
+      livelink:values.liveLink,
+      githublink:values.githubLink,
+      user:localStorage.getItem("userId")
+    }).catch(err=>console.log(err));
+    const data=await res.data;
+    console.log(data);
+    return data;
+  }
+  /*const sendRequest=async(id)=>{
+    const updata=[{
+        "title":values.title,
+        "description":values.description,
+        "screenshot":values.screenshot,
+        "livelink":values.liveLink,
+        "githublink":values.githubLink
+    }]
+    const res=await axios.put(`http://localhost:5000/api/user/updateproject/${id}`,{
+      project:Project
+    }).catch(err=>console.log(err))
+
+    console.log(`Before: ${res.data}`);
+    const data=await res.data;
+    console.log(`After: ${data}`);
+    return data;
+ }*/
   const handleSubmit = (e) => {
     e.preventDefault();
+    const auth=JSON.parse(localStorage.getItem("data"));
+    sendRequest(auth._id).then((data)=>console.log(data)).then(()=>navigate("/display")).catch((error)=>console.log(error))
     // * Data Available Here
     console.log(values);
     // TODO : need to type value of the experience to int
@@ -63,6 +99,7 @@ const AddProject = () => {
   };
 
   return (
+    
     <div className="app">
       <div className="flex flex-row">
         <form onSubmit={handleSubmit}>
@@ -103,7 +140,7 @@ const AddProject = () => {
           <div className="flex flex-row">
             <FileBase64
               multiple={false}
-              onDone={(base64) => setValues({ ...values, screenshot: base64 })}
+              onDone={(base64) => setValues({ ...values, screenshot: base64.base64 })}
             />
           </div>
           <button>Submit</button>
@@ -122,7 +159,7 @@ const AddProject = () => {
           ) : (
             <img
               class="w-full object-cover"
-              src={values.screenshot.base64}
+              src={values.screenshot}
               alt="project image"
             />
           )}

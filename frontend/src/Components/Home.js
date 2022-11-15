@@ -22,12 +22,10 @@ const Home = () => {
               Work.
             </p>
             <div class="flex justify-center">
-              <button class="inline-flex w-64 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                Build Project
+              <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                <a href="/addproject">Build Project</a>
               </button>
-              <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-                Explore Projects
-              </button>
+              
             </div>
           </div>
           <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
@@ -61,12 +59,12 @@ const Home = () => {
                 </div>
                 <div class="flex-grow">
                   <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-                    Build More Projects
+                   Explore More Projects
                   </h2>
                   <p class="leading-relaxed text-base">
-                    Build more project and get some hands on experience of development to get hired!
+                    Explore more projects and take some inspiration from other projects that will help you to build more stuff. 
                   </p>
-                  <a href="Specify Something here too" class="mt-3 text-indigo-500 inline-flex items-center">
+                  <a class="mt-3 text-indigo-500 inline-flex items-center" href="/display">
                     Get Started
                     <svg
                       fill="none"
@@ -106,7 +104,7 @@ const Home = () => {
                   <p class="leading-relaxed text-base">
                     Build Your Profile Strong to that you will stand out by your Work and Skills!
                   </p>
-                  <a href="Put Something Here" class="mt-3 text-indigo-500 inline-flex items-center">
+                  <a class="mt-3 text-indigo-500 inline-flex items-center" href="/adddeveloper">
                     Get Started
                     <svg
                       fill="none"

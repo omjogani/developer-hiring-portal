@@ -1,6 +1,14 @@
 import Image from "../assets/background.jpeg";
-
+import { Link ,useNavigate} from 'react-router-dom'
 const AdminHome = () => {
+  let navigate=useNavigate();
+  const hdlogout=()=>{
+     localStorage.removeItem("data");
+     localStorage.removeItem("pid");
+     localStorage.removeItem("userId")
+     localStorage.removeItem("admin")
+     navigate("/");
+  }
   return (
     <div className="app">
       <section class="text-gray-600 body-font">
@@ -10,7 +18,7 @@ const AdminHome = () => {
           </div>
           <div className="pl-5"></div>
           <div className="button">
-            <button class="rounded">Logout</button>
+          {!localStorage.getItem("admin") ? <a className='btn btn-primary '><Link className="nav-link"  aria-current="page" to="/login">Login</Link></a> :<a className="mr-5 hover:text-gray-900"><button  className='btn btn-primary ' onClick={hdlogout}><Link className="nav-link"  aria-current="page" to="/login">Logout</Link></button></a>}
           </div>
         </div>
         <div class="container px-5 py-10 mx-auto">
@@ -37,7 +45,7 @@ const AdminHome = () => {
                   </p>
                   <div class="flex items-center flex-wrap ">
                     <a
-                      href="#redirect displaydeveloperdetails"
+                      href="/displaydev"
                       class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
                     >
                       See Developers
@@ -82,7 +90,7 @@ const AdminHome = () => {
                   </p>
                   <div class="flex items-center flex-wrap ">
                     <a
-                      href="#redirect displaycompanydetails"
+                      href="/discom"
                       class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
                     >
                       See Companies

@@ -1,15 +1,50 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import TagInput from "./TagInput";
 import FormInput from "./FormInput";
+import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 const ProfileScreen = () => {
+  const navigate=useNavigate();
   const [values, setValues] = useState({
     name: "",
     bio: "",
     experience: "",
-    techStack: [],
+    techStack: []
   });
+  const[profile,setprofile]=useState({});
+  const id= localStorage.getItem("userId");
+  console.log(id)
+  const fetchdetails=async()=>{
+     const res =await axios.get(`http://localhost:5000/api/user/${id}`).catch(err=>console.log(err))
+     const data=await res.data
+     return data;
+  }
+  useEffect(()=>{
+     fetchdetails().then((data)=>{
+       setprofile(data.user)
+       setValues({
+         name:data.user.name,
+         bio:data.user.bio,
+         experience:data.user.experience,
+         techStack:data.user.skill
+       })
+     });
+  },[id])
 
+  const sendRequest=async(e)=>{
+    // e.preventDefault();
+
+    const res=await axios.put(`http://localhost:5000/api/user/update/${id}`,{
+      name:values.name,
+      bio:values.bio,
+      experience:values.experience,
+      techStack:values.skill
+    }).catch(err=>console.log(err))
+
+    const data=await res.data;
+    return data;
+ }
   const inputs = [
     {
       id: 1,
@@ -41,12 +76,15 @@ const ProfileScreen = () => {
     },
   ];
 
-  const updateTechStack = (techs) => {
+  const updateTechStack = (techs ) => {
+    
     setValues((previous) => ({ ...previous, techStack: techs }));
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+     e.preventDefault();
+    sendRequest().then((data)=>console.log(data)).then(()=>navigate("/"))
     // TODO: Submit Data Here
   };
 
@@ -84,13 +122,13 @@ const ProfileScreen = () => {
               onChange={onChange}
             />
             <div className="w-7"></div>
-            <TagInput handleAddTechStack={updateTechStack}></TagInput>
+            <TagInput handleAddTechStack={updateTechStack} retrievedTag={values.techStack}></TagInput>
           </div>
 
           <div className="flex flex-row">
           
           </div>
-          <button>Submit</button>
+          <button>Update</button>
         </form>
       </div>
     </div>

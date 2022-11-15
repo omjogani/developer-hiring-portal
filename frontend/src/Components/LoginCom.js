@@ -2,7 +2,7 @@ import logo from "../assets/logo.png";
 import { useState } from "react";
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-const Login = () => {
+const LoginCom = () => {
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -48,9 +48,8 @@ const Login = () => {
       return stateObj;
     });
   };
-  const sendrequiest=async(type="login")=>{
-    const res=await axios.post(`http://localhost:5000/api/user/${type}`,{
-
+  const sendrequiest=async()=>{
+    const res=await axios.post("http://localhost:5000/api/comp/login",{
         email:input.email,
         password:input.password
       }).catch(err=>console.log(err))
@@ -61,25 +60,7 @@ const Login = () => {
    const handlesubmit = (e) => {
     e.preventDefault();
     
-    sendrequiest().then((data)=>{
-      localStorage.setItem("data",JSON.stringify(data.user));
-      if(localStorage.getItem("userId"))
-      {
-        localStorage.setItem("pid",localStorage.getItem("userId"))
-    
-      }
-      else{
-        localStorage.setItem("pid","null")
-      }
-      if(data.user.email=="admin125@gmail.com")
-       {
-        localStorage.setItem("admin",data.user.email)
-        navigate("/admin")
-      }else {
-        navigate("/")
-      }
-
-    });
+    sendrequiest().then((data)=>localStorage.setItem("comid",data.user._id)).then(()=>navigate("/display"));
     
     if(error.email === "" && error.password === ""){
         // TODO: Handle Login Operation Here
@@ -181,7 +162,7 @@ const Login = () => {
           <p className="mt-2 text-center text-sm text-gray-600">
             New User?
             <br />
-            <a href="/Register" className="text-indigo-400">
+            <a href="/addcom" className="text-indigo-400">
               Register Here
             </a>
           </p>
@@ -191,4 +172,4 @@ const Login = () => {
   );
 };
 
-export { Login };
+export { LoginCom };

@@ -1,17 +1,18 @@
 import { useState } from "react";
 import "./addDeveloper.css";
 import FormInput from "./FormInput";
+import TagInput from "./TagInput";
 import RegisterImage from "../assets/register.png";
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-import TagInputAdd from "./TagInputAdd";
 
-const AddDeveloperDetails = () => {
+const AddCompany = () => {
   const [values, setValues] = useState({
     name: "",
-    bio: "",
-    experience: "",
-    techStack: []
+    email:"",
+    password:"",
+    technology: "",
+    years: "",
   });
   const navigate=useNavigate();
   const auth=JSON.parse(localStorage.getItem("data"));
@@ -28,38 +29,50 @@ const AddDeveloperDetails = () => {
     },
     {
       id: 2,
-      name: "bio",
-      type: "text",
-      placeholder: "Bio",
-      errorMessage: "Bio is required...",
-      label: "Bio",
+      name: "email",
+      type: "email",
+      placeholder: "email",
+      errorMessage: "email is required...",
+      label: "Email",
       required: true,
     },
     {
       id: 3,
-      name: "experience",
-      type: "number",
+      name: "password",
+      type: "password",
+      placeholder: "password",
+      errorMessage: "password is required...",
+      label: "Password",
+      required: true,
+    },
+    {
+      id: 4,
+      name: "technology",
+      type: "text",
+      placeholder: "Technology",
+      errorMessage: "Bio is required...",
+      label: "Technology",
+      required: true,
+    },
+    {
+      id: 5,
+      name: "years",
+      type: "text",
       errorMessage: "Experience is required, Enter 0 if no experience.",
       placeholder: "Experience / Years",
-      label: "Working Experience",
+      label: "Working Years",
       required: true,
     },
     
   ];
 
-  const updateTechStack = (techs) => {
-    setValues((previous) => ({...previous, techStack: techs}));
-  }
-  const senduser=async()=>{
-    const res=await axios.post(`http://localhost:5000/api/user/userin/${auth._id}`,{
+  const sendcompany=async()=>{
+    const res=await axios.post("http://localhost:5000/api/comp/companyin",{
       name:values.name,
-      email:auth.email,
-      bio:values.bio,
-      skill:values.techStack,
-      experience:values.experience,
-      userid:auth._id,
-      social:[],
-      projects:[]
+      email:values.email,
+      password:values.password,
+      technology:values.technology,
+      years:values.years
     }).catch(error=>console.log(error))
     const data=await res.data
     return data
@@ -68,9 +81,8 @@ const AddDeveloperDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   const auth=JSON.parse(localStorage.getItem("data"));
-    console.log(auth.email);
-    senduser().then((data)=>localStorage.setItem("userId",data.user._id)).then(()=>navigate("/addproject")).catch(error=>console.log(error));
+   // const auth=JSON.parse(localStorage.getItem("data"));
+    sendcompany().then((data)=>console.log(data)).then(()=>navigate("/comlogin")).catch(error=>console.log(error));
     // * Data Available Here
     console.log(values);
     // TODO : need to type value of the experience to int
@@ -93,8 +105,6 @@ const AddDeveloperDetails = () => {
               onChange={onChange}
             />
           ))}
-          <label>Skills</label>
-          <TagInputAdd handleAddTechStack={updateTechStack}></TagInputAdd>
           <button>Submit</button>
         </form>
         <div className="flex h-scree"><img className="h-4/6 m-auto" src={RegisterImage} alt="" /></div>
@@ -103,4 +113,4 @@ const AddDeveloperDetails = () => {
   );
 };
 
-export { AddDeveloperDetails };
+export { AddCompany };
