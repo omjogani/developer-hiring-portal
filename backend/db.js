@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const mongoUrl="mongodb+srv://javiya_125:harshad125@cluster1.oxydu.mongodb.net/odhp?retryWrites=true&w=majority";
+const mongoUrl="YOUR_MONGO_DB_URL";
 // harshad125
 const contomongo=()=>{
        mongoose.connect(mongoUrl,()=>{
